@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이력서 · Your Name</title>
+  <meta name="description" content="Your Name — 프론트엔드 개발자 이력서" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1f1f1f;
+      --muted: #6b7280;
+      --accent: #a78bfa;
+      --surface: #ffffff;
+      --line: #e5e7eb;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #18181b;
+        --fg: #f4f4f5;
+        --muted: #a1a1aa;
+        --surface: #27272a;
+        --line: #3f3f46;
+        --accent: #8b5cf6;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      z-index: 100;
+    }
+    @media(prefers-color-scheme:dark){ header{ background: rgba(24,24,27,0.75);} }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: var(--fg);
+      font-weight: 500;
+      padding: .25rem .5rem;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    nav a:hover {
+      background: rgba(167,139,250,0.1);
+    }
+
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 1rem;
+    }
+
+    h1, h2 {
+      margin: 0 0 .75rem;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    h1 { font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); }
+    h2 { font-size: clamp(1.3rem, 1rem + 1vw, 1.8rem); }
+
+    p { margin: 0 0 1rem; color: var(--muted); }
+
+    .hero {
+      display: grid;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    @media(min-width:800px){ .hero{ grid-template-columns: 180px 1fr; } }
+
+    .avatar {
+      width: 150px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .6rem 1.1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-weight: 500;
+      transition: all .2s ease;
+    }
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn:hover {
+      opacity: .9;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .35rem .7rem;
+      font-size: .9rem;
+      background: var(--surface);
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-2px); }
+
+    footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 1rem;
+      font-size: .9rem;
+    }
+  
+    /* --- Blackhole avatar styles --- */
+    .avatar-fx{ position:relative; overflow:hidden; background:#111; background-image:url('images/profile.jpg'); background-size:cover; background-position:center; }
+    #blackhole{ position:relative; width:150px; height:150px; }
+    #blackhole canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:1 }
+    .centerHover{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:64%; height:64%; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:2; cursor:pointer; transition:opacity .4s ease }
+    .centerHover span{ color:rgba(255,255,255,.55); font-size:.9rem; letter-spacing:.2em }
+    .centerHover.open{ opacity:0; pointer-events:none }
+</style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">Your Name</div>
+      <nav>
+        <ul>
+          <li><a href="#about">소개</a></li>
+          <li><a href="#skills">기술 스택</a></li>
+          <li><a href="#projects">프로젝트</a></li>
+          <li><a href="#contact">연락처</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="section">
+      <div class="hero">
+        <div class="avatar avatar-fx" id="blackhole">
+          <div class="centerHover"><span>ENTER</span></div>
+        </div>
+        <div>
+          <h1>안녕하세요, Your Name 입니다.</h1>
+          <p>깔끔하고 단정한 디자인을 추구하는 프론트엔드 개발자입니다. 사용성을 중심으로 심플한 인터페이스를 만듭니다.</p>
+          <div style="display:flex; gap:.75rem; flex-wrap:wrap">
+            <a class="btn primary" href="#projects">프로젝트 보기</a>
+            <a class="btn" href="#contact">연락하기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>기술 스택</h2>
+      <div class="chips">
+        <span class="chip">HTML5</span>
+        <span class="chip">CSS / Sass</span>
+        <span class="chip">JavaScript (ESNext)</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Vue / React</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">Figma</span>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>프로젝트</h2>
+      <div style="display:grid; gap:1.25rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <div class="card">
+          <h3>프로젝트 A</h3>
+          <p>반응형 UI와 퍼포먼스 최적화를 구현한 웹앱.</p>
+        </div>
+        <div class="card">
+          <h3>프로젝트 B</h3>
+          <p>콘텐츠 추천 및 검색 시스템 개발.</p>
+        </div>
+        <div class="card">
+          <h3>프로젝트 C</h3>
+          <p>디자인 시스템 구축 및 문서화.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>연락처</h2>
+      <div class="card">
+        <p>📧 <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+        <p>💼 <a href="https://linkedin.com/in/your-id" target="_blank">LinkedIn</a></p>
+        <p>👨‍💻 <a href="https://github.com/your-id" target="_blank">GitHub</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Your Name. All rights reserved.
+  </footer>
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Blackhole visualization (scaled for avatar)
+    function blackhole(element){
+      const container = document.querySelector(element);
+      if(!container) return;
+      const size = Math.min(container.clientWidth, container.clientHeight) || 150;
+      const cw = size, ch = size;
+      const centerx = cw/2, centery = ch/2;
+      const maxorbit = size * 0.42; // distance from center
+
+      // canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = cw; canvas.height = ch; container.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      // we'll switch composite modes per frame (see loop)
+      ctx.globalCompositeOperation = 'source-over';
+
+      const stars = [];
+      let collapse = false, expanse = false, returning = false;
+      const startTime = Date.now();
+      let currentTime = 0;
+
+      class Star{
+        constructor(){
+          const inner = Math.random() * (maxorbit * 0.5) + 1;
+          const outer = Math.random() * (maxorbit * 0.5) + maxorbit * 0.6;
+          this.orbital = (inner + outer) / 2;
+          this.x = centerx;
+          this.y = centery + this.orbital;
+          this.yOrigin = this.y;
+          this.speed = (Math.random()*1.5 + 0.8) * Math.PI/180;
+          this.rotation = 0;
+          this.startRotation = (Math.random()*360) * Math.PI/180;
+          this.id = stars.length;
+          this.collapseBonus = Math.max(0, this.orbital - (maxorbit * 0.7));
+          const alpha = 1 - (this.orbital / (maxorbit*1.2));
+          this.color = 'rgba(167,139,250,'+ Math.max(0.15, alpha) +')'; // lavender trail
+          this.hoverPos = centery + (maxorbit * 0.5) + this.collapseBonus;
+          this.expansePos = centery - (this.id % 60) * (size*0.02) + (Math.random()*(size*0.04));
+          this.prevR = this.startRotation; this.prevX = this.x; this.prevY = this.y; this.originalY = this.yOrigin;
+        }
+        draw(){
+          if(!expanse && !returning){
+            this.rotation = this.startRotation + (currentTime * this.speed);
+            if(!collapse){
+              this.y += (this.yOrigin - this.y)*0.08;
+            }else{
+              this.y += (this.hoverPos - this.y)*0.08;
+            }
+          }else if(expanse && !returning){
+            this.rotation = this.startRotation + (currentTime * (this.speed*0.6));
+            this.y += (this.expansePos - this.y)*0.02;
+          }else if(returning){
+            this.rotation = this.startRotation + (currentTime * this.speed);
+            this.y += (this.originalY - this.y)*0.03;
+          }
+
+          ctx.save();
+          ctx.strokeStyle = this.color; ctx.lineWidth = 1;
+          const old = rotate(centerx, centery, this.prevX, this.prevY, -this.prevR);
+          ctx.beginPath(); ctx.moveTo(old[0], old[1]);
+          ctx.translate(centerx, centery); ctx.rotate(this.rotation); ctx.translate(-centerx, -centery);
+          ctx.lineTo(this.x, this.y); ctx.stroke(); ctx.restore();
+          this.prevR = this.rotation; this.prevX = this.x; this.prevY = this.y;
+        }
+      }
+
+      function rotate(cx, cy, x, y, angle){
+        const c = Math.cos(angle), s = Math.sin(angle);
+        return [ c*(x-cx) + s*(y-cy) + cx, c*(y-cy) - s*(x-cx) + cy ];
+      }
+
+      const centerHover = container.querySelector('.centerHover');
+      centerHover.addEventListener('click', ()=>{
+        collapse=false; expanse=true; returning=false; centerHover.classList.add('open');
+        setTimeout(()=>{expanse=false; returning=true; setTimeout(()=>{returning=false; centerHover.classList.remove('open');}, 6000)}, 8000);
+      });
+      centerHover.addEventListener('mouseover', ()=>{ if(!expanse) collapse=true; });
+      centerHover.addEventListener('mouseout', ()=>{ if(!expanse) collapse=false; });
+
+      // build stars (scale to avatar size)
+      const count = Math.floor(700 * (size/150));
+      for(let i=0;i<count;i++) stars.push(new Star());
+
+      function loop(){
+        currentTime = (Date.now() - startTime) / 50;
+        // clear with gentle fade (normal blending)
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.fillStyle = 'rgba(17,17,20,0.22)';
+        ctx.fillRect(0,0,cw,ch);
+        // draw star trails with additive blending for glow
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.lineWidth = 1.25;
+        for(let i=0;i<stars.length;i++) stars[i].draw();
+        requestAnimationFrame(loop);
+      }
+
+      // initial clear and start
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = 'rgba(17,17,20,1)'; ctx.fillRect(0,0,cw,ch);
+      loop();
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      blackhole('#blackhole');
+    });
+  </script>
+</body>
+</html>
