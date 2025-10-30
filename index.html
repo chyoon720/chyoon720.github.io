@@ -11,14 +11,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --fg: #eaf7ff;
-      --muted: #b7d4f5;
-      --accent: #93c5fd;
-      --surface: rgba(255,255,255,0.08);
-      --line: rgba(255,255,255,0.15);
-      --radius: 14px;
-      --shadow: 0 10px 35px rgba(0,0,0,0.4);
-      --bg-dark: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #0d1b2a 100%);
+      /* Warmer, cute pastel palette */
+      --fg: #f6fbff;
+      --muted: #cfe2ff;
+      --accent: #8ec5ff;   /* sky */
+      --accent-2: #c4b5fd; /* lavender */
+      --peach: #ffd6e7;    /* warm cute hint */
+      --surface: rgba(255,255,255,0.10);
+      --line: rgba(255,255,255,0.16);
+      --radius: 16px;
+      --shadow: 0 10px 35px rgba(0,0,0,0.35);
+      --bg-dark: radial-gradient(1200px 800px at 15% 15%, #203a5a 0%, transparent 48%),
+                 radial-gradient(900px 700px at 85% 25%, #2a3a78 0%, transparent 50%),
+                 linear-gradient(135deg, #0f2036 0%, #162a45 50%, #0f2036 100%);
     }
 
     * { box-sizing: border-box; }
@@ -35,45 +40,35 @@
 
     #glass-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(25px) saturate(150%) contrast(120%);
-      -webkit-backdrop-filter: blur(25px) saturate(150%) contrast(120%);
+      backdrop-filter: blur(26px) saturate(150%) contrast(115%);
+      -webkit-backdrop-filter: blur(26px) saturate(150%) contrast(115%);
       z-index: -1;
       overflow: hidden;
     }
 
     .glossy-light {
       position: absolute;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle at center, rgba(147,197,253,0.4) 0%, transparent 70%);
+      width: 420px; height: 420px;
+      background: radial-gradient(circle at 40% 40%, rgba(142,197,255,0.48) 0%, rgba(255,214,231,0.35) 35%, transparent 70%);
       border-radius: 50%;
       filter: blur(60px);
       animation: floatLights 12s ease-in-out infinite alternate;
     }
-
     @keyframes floatLights {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-      100% { transform: translate(60px, -40px) scale(1.2); opacity: 0.9; }
+      0% { transform: translate(0, 0) scale(1); opacity: .65; }
+      100% { transform: translate(60px, -40px) scale(1.18); opacity: .95; }
     }
 
-    .particles {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      overflow: hidden;
-      z-index: -1;
-    }
+    .particles { position:absolute; inset:0; overflow:hidden; z-index:-1; }
     .particle {
       position: absolute;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.25);
       border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255,255,255,0.35);
       animation: floatParticle linear infinite;
     }
-
     @keyframes floatParticle {
       0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
       50% { opacity: 1; }
@@ -84,147 +79,90 @@
     a:hover { text-decoration: underline; }
 
     header {
-      position: sticky;
-      top: 0;
-      background: rgba(13, 27, 42, 0.6);
-      backdrop-filter: blur(15px);
+      position: sticky; top: 0;
+      background: rgba(18, 34, 56, 0.55);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
       z-index: 100;
     }
 
     .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 72px;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 72px; max-width: 960px; margin: 0 auto; padding: 0 1rem;
     }
+    .brand { font-weight: 700; font-size: 1.25rem; color: var(--accent); letter-spacing: 0.02em; }
 
-    .brand {
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--accent);
-      letter-spacing: 0.02em;
-    }
+    nav ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; }
+    nav a { color: var(--fg); font-weight: 500; padding: .25rem .5rem; border-radius: 10px; transition: background .2s; }
+    nav a:hover { background: rgba(142,197,255,0.18); }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.25rem;
-      margin: 0;
-      padding: 0;
-    }
-    nav a {
-      color: var(--fg);
-      font-weight: 500;
-      padding: .25rem .5rem;
-      border-radius: 8px;
-      transition: background .2s;
-    }
-    nav a:hover {
-      background: rgba(147,197,253,0.15);
-    }
+    .section { max-width: 960px; margin: 0 auto; padding: 84px 1rem; }
+    h1, h2 { margin: 0 0 .75rem; line-height: 1.2; font-weight: 700; }
+    h1 { font-size: clamp(1.9rem, 1.2rem + 2vw, 2.7rem); color: var(--accent); }
+    h2 { font-size: clamp(1.35rem, 1rem + 1vw, 1.85rem); }
+    p  { margin: 0 0 1rem; color: var(--muted); }
 
-    .section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 1rem;
-    }
+    .hero { display: grid; gap: 1.6rem; align-items: center; }
+    @media(min-width:800px){ .hero{ grid-template-columns: 190px 1fr; } }
 
-    h1, h2 {
-      margin: 0 0 .75rem;
-      line-height: 1.2;
-      font-weight: 600;
-    }
-    h1 { font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); color: var(--accent); }
-    h2 { font-size: clamp(1.3rem, 1rem + 1vw, 1.8rem); }
-
-    p { margin: 0 0 1rem; color: var(--muted); }
-
-    .hero {
-      display: grid;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    @media(min-width:800px){ .hero{ grid-template-columns: 180px 1fr; } }
-
+    /* Avatar – cute glow ring + sparkles */
     .avatar-fx {
       position: relative;
       overflow: hidden;
-      background-image: url('image/Karunya(@Karunya02).jpeg');
-      background-size: cover;
-      background-position: center;
+      background-image: url('image/a.jpeg');
+      background-size: cover; background-position: center;
+      border-radius: 50%; width: 156px; height: 156px;
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: 0 6px 28px rgba(142,197,255,0.35), 0 0 0 4px rgba(196,181,253,0.15) inset;
+      isolation: isolate;
+    }
+    .avatar-fx::after { /* pastel ring */
+      content: ""; position: absolute; inset: -6px;
       border-radius: 50%;
-      box-shadow: 0 0 25px rgba(255,255,255,0.15);
-      width: 150px;
-      height: 150px;
-      border: 1px solid rgba(255,255,255,0.15);
+      background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--peach), var(--accent));
+      filter: blur(6px);
+      opacity: .45; z-index: -1; animation: ringSpin 10s linear infinite;
     }
+    @keyframes ringSpin { to { transform: rotate(360deg); } }
+    .avatar-fx::before { /* soft glow blob */
+      content: ""; position:absolute; width: 120px; height:120px; left:50%; top:60%; transform: translate(-50%,-50%);
+      background: radial-gradient(circle, rgba(255,214,231,0.4), transparent 60%);
+      filter: blur(18px); z-index: 0;
+    }
+    .sparkle {
+      position:absolute; width:6px; height:6px; border-radius:50%; background:#fff;
+      box-shadow: 0 0 10px rgba(255,255,255,.8);
+      animation: twinkle 2.4s ease-in-out infinite alternate;
+    }
+    .sparkle.s1{ left:-6px; top:40%; animation-delay:.1s }
+    .sparkle.s2{ right:-8px; top:20%; animation-delay:.6s }
+    .sparkle.s3{ right:10%; bottom:-6px; animation-delay:1s }
+    @keyframes twinkle { 0%{ transform: scale(.6); opacity:.6 } 100%{ transform: scale(1.1); opacity:1 } }
 
-    .btn {
-      display: inline-block;
-      padding: .6rem 1.1rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      background: transparent;
-      font-weight: 500;
-      transition: all .25s ease;
-    }
-    .btn.primary {
-      background: var(--accent);
-      color: #0a1220;
-      border: none;
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(147,197,253,0.4);
-    }
+    .btn { display:inline-block; padding:.65rem 1.05rem; border-radius: 999px; border:1px solid var(--accent); color:var(--accent); background: rgba(142,197,255,0.08); font-weight:600; transition: all .25s ease; }
+    .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#0b1424; border:none; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(142,197,255,0.35); }
 
-    .card, .chip {
-      backdrop-filter: blur(20px) saturate(180%);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
+    /* Cute chips */
+    .chips { display:flex; flex-wrap:wrap; gap:.6rem; }
+    .chip  { border-radius: 999px; padding:.4rem .75rem; font-size:.9rem; background: rgba(142,197,255,0.14); border:1px solid rgba(142,197,255,0.25); color:#eaf7ff; }
+    .chip:nth-child(odd){ background: rgba(196,181,253,0.14); border-color: rgba(196,181,253,0.25); }
 
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-    }
-    .chip {
-      border-radius: 999px;
-      padding: .35rem .7rem;
-      font-size: .9rem;
-    }
-
-    .card {
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.25rem;
-      transition: transform .2s;
-    }
+    /* Glass cards */
+    .card { backdrop-filter: blur(20px) saturate(180%); background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); border-radius: var(--radius); box-shadow: var(--shadow); padding:1.25rem; transition: transform .2s; }
     .card:hover { transform: translateY(-3px); }
 
-    footer {
-      border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--muted);
-      padding: 40px 1rem;
-      font-size: .9rem;
-    }
+    footer { border-top: 1px solid var(--line); text-align:center; color:var(--muted); padding: 40px 1rem; font-size:.9rem; }
   </style>
 </head>
 <body>
   <div id="glass-bg">
-    <div class="glossy-light" style="top:10%; left:10%; animation-delay:0s;"></div>
-    <div class="glossy-light" style="bottom:15%; right:20%; animation-delay:4s;"></div>
-    <div class="glossy-light" style="top:40%; right:10%; animation-delay:8s;"></div>
-
+    <div class="glossy-light" style="top:8%; left:8%; animation-delay:0s;"></div>
+    <div class="glossy-light" style="bottom:12%; right:18%; animation-delay:4s;"></div>
+    <div class="glossy-light" style="top:42%; right:10%; animation-delay:8s;"></div>
     <div class="particles" id="particles"></div>
   </div>
+
   <header>
     <div class="nav-inner">
       <div class="brand">Chaeyoung</div>
@@ -242,7 +180,11 @@
   <main>
     <section id="about" class="section">
       <div class="hero">
-        <div class="avatar-fx"></div>
+        <div class="avatar-fx">
+          <span class="sparkle s1"></span>
+          <span class="sparkle s2"></span>
+          <span class="sparkle s3"></span>
+        </div>
         <div>
           <h1>Hi, I'm Chaeyoung</h1>
           <p>A front-end developer who loves crafting clean, minimal, and interactive user experiences with modern web technologies.</p>
@@ -298,21 +240,22 @@
   <footer>
     © <span id="year"></span> Chaeyoung. All rights reserved.
   </footer>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // create glossy floating particles
+    // glossy floating particles (a bit cuter & brighter)
     const particlesContainer = document.getElementById('particles');
-    const numParticles = 50;
-    for (let i = 0; i < numParticles; i++) {
+    const NUM = 60;
+    for (let i = 0; i < NUM; i++) {
       const p = document.createElement('div');
-      p.classList.add('particle');
-      const size = Math.random() * 4 + 2;
+      p.className = 'particle';
+      const size = Math.random() * 3 + 2.2;
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
       p.style.left = `${Math.random() * 100}%`;
-      p.style.animationDuration = `${8 + Math.random() * 8}s`;
-      p.style.animationDelay = `${Math.random() * 8}s`;
+      p.style.animationDuration = `${9 + Math.random() * 9}s`;
+      p.style.animationDelay = `${Math.random() * 9}s`;
       particlesContainer.appendChild(p);
     }
   </script>
